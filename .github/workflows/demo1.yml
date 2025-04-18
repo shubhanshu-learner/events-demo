@@ -2,12 +2,15 @@ name: Events Demo 1
 on: 
   pull_request:
     types: [opened, edited]
+    branches: [master,'dev-*','feat/**']
   workflow_dispatch:
+  push:
+    branches: [master,'dev-*','feat/**']
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Output event data
+      - name: Output event data Information
         run: echo "${{ toJSON(github.event) }}"
       - name: Get code
         uses: actions/checkout@v3
